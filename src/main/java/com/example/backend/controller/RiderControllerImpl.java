@@ -15,8 +15,14 @@ import java.util.Optional;
 @RestController
 public class RiderControllerImpl implements RiderController {
 
+
   @Autowired
   RiderRepository riderRepository;
+
+  @Override
+  public List<Rider> getRiderByFirstName(String searchFirstName) {
+    return riderRepository.findRiderByRiderFirstName(searchFirstName);
+  }
 
   @Override
   public List<Rider> getAllRiders() {

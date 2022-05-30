@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 public interface RiderController {
+
+
+  @GetMapping("/findRiderByFirstName/riders/{searchFirstName}")
+  //heter fra forend
+  public List<Rider> getRiderByFirstName(@PathVariable String searchFirstName);
+
   /**
    * Get a list of Riders from the database. The mapping is /show/players
    *
