@@ -32,7 +32,7 @@ public class Rider {
   @Column(nullable = false)
   private String riderCountry;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "team_id")
   private Team team;
 
