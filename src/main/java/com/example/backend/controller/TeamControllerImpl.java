@@ -5,13 +5,17 @@ import com.example.backend.model.Team;
 import com.example.backend.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public class TeamControllerImpl implements TeamController{
-
+@CrossOrigin
+@RestController
+public class TeamControllerImpl implements TeamController {
   @Autowired
   TeamRepository teamRepository;
+
   @Override
   public List<Team> getTeamByTeamName(String searchTeamName) {
     return null;

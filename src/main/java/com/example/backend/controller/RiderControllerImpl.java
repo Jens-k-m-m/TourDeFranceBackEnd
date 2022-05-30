@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -18,9 +16,9 @@ import java.util.Optional;
 @RestController
 public class RiderControllerImpl implements RiderController {
 
-
   @Autowired
   RiderRepository riderRepository;
+
 
   @Override
   public List<Rider> getRiderByFirstName(String searchFirstName) {
@@ -51,10 +49,10 @@ public class RiderControllerImpl implements RiderController {
     try {
       if (updateRider.isPresent()) {
         riderRepository.save(rider);
-      }else {
+      } else {
         return new ResponseEntity<>("Rider not Updated", HttpStatus.NOT_ACCEPTABLE);
       }
-    }catch (Exception e) {// TODO: fix exception to custom
+    } catch (Exception e) {// TODO: fix exception to custom
       return new ResponseEntity<>("Rider not Updated\nError: " + e, HttpStatus.NOT_ACCEPTABLE);
     }
     return new ResponseEntity<>("Rider Updated", HttpStatus.OK);
@@ -74,9 +72,9 @@ public class RiderControllerImpl implements RiderController {
   public List<Rider> getRiderFromTeam(int id) {
     List<Rider> riderList = riderRepository.findAll();
     List<Rider> riderListResult = new ArrayList<>();
-    if(!riderList.isEmpty()){
-      for (Rider rider : riderList){
-        if(rider.getTeam().getTeamId() == id) {
+    if (!riderList.isEmpty()) {
+      for (Rider rider : riderList) {
+        if (rider.getTeam().getTeamId() == id) {
           riderListResult.add(rider);
         }
       }
