@@ -54,4 +54,7 @@ public interface RiderController {
 
   @DeleteMapping("delete/rider/{id}")
   public ResponseEntity<String> deleteRider(@PathVariable int id);
+
+  @GetMapping("/team/rider/{id}")
+  public List<Rider> getRiderFromTeam(@PathVariable int teamId);
 }

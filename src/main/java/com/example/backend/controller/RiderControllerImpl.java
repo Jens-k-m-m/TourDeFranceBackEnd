@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,5 +69,20 @@ public class RiderControllerImpl implements RiderController {
       return new ResponseEntity<>("Could not id at all = " + id, HttpStatus.NOT_FOUND);
     }
   }
+
+  @Override
+  public List<Rider> getRiderFromTeam(int id) {
+    List<Rider> riderList = riderRepository.findAll();
+    List<Rider> riderListResult = new ArrayList<>();
+    if(!riderList.isEmpty()){
+      for (Rider rider : riderList){
+        if(rider.getTeam().getTeamId() == id) {
+          riderListResult.add(rider);
+        }
+      }
+    }
+    return riderListResult;
+  }
+
 
 }
