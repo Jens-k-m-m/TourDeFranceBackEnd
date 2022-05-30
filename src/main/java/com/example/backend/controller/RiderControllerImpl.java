@@ -56,4 +56,15 @@ public class RiderControllerImpl implements RiderController {
     }
     return new ResponseEntity<>("Rider Updated", HttpStatus.OK);
   }
+
+  @Override
+  public ResponseEntity<String> deleteRider(int id) {
+    try {
+      riderRepository.deleteById(id);
+      return new ResponseEntity<>("delete id = " + id, HttpStatus.OK);
+    } catch (Exception err) {
+      return new ResponseEntity<>("Could not id at all = " + id, HttpStatus.NOT_FOUND);
+    }
+  }
+
 }

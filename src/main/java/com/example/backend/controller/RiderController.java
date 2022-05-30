@@ -51,4 +51,7 @@ public interface RiderController {
    */
   @PutMapping("update/rider/{searchById}")
   public ResponseEntity<String> updateRider(@PathVariable int searchById, @RequestBody Rider rider);
+
+  @DeleteMapping("delete/rider/{id}")
+  public ResponseEntity<String> deleteRider(@PathVariable int id);
 }
