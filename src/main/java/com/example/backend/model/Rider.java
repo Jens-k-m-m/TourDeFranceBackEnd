@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Rider {
 
+
   @Id
   @Column(name = "rider_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +34,7 @@ public class Rider {
 
   @ManyToOne
   @JoinColumn(name = "team_id")
-  private Rider rider;
+  private Team team;
 
   public int getRiderId() {
     return riderId;
@@ -99,11 +100,13 @@ public class Rider {
     this.riderCountry = riderCountry;
   }
 
-  public Rider getRider() {
-    return rider;
+  public Team getTeam() {
+    return team;
   }
 
-  public void setRider(Rider rider) {
-    this.rider = rider;
+  public void setTeam(Team team) {
+    this.team = team;
   }
+
+
 }

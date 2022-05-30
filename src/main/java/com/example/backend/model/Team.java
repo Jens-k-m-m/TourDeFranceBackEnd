@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Team {
 
   @OneToMany
   @JoinColumn(name = "team_id")
-  @JsonIgnore
+  @JsonBackReference
   private Set<Rider> riders = new HashSet<>();
 
   public int getTeamId() {
