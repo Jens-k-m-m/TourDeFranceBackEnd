@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -27,5 +28,26 @@ public class RiderControllerImpl implements RiderController {
   public ResponseEntity<Rider> createRider(Rider rider) {
     riderRepository.save(rider);
     return new ResponseEntity<>(rider, HttpStatus.CREATED);
+  }
+
+  @Override
+  public List<Rider> getRiderBySearchId(int searchById) {
+    return riderRepository.findRiderByRiderId(searchById);
+  }
+
+  @Override
+  public ResponseEntity<String> updateRider(int searchById, Rider rider) {
+    rider.setRiderId(searchById);
+    Optional<Rider> updateRider = riderRepository.findById(searchById);
+    try {
+      if (updateRider.isPresent()) {
+        riderRepository.save(rider);
+      }else {
+        return new ResponseEntity<>("Rider not Updated", HttpStatus.NOT_ACCEPTABLE);
+      }
+    }catch (Exception e) {// TODO: fix exception to custom
+      return new ResponseEntity<>("Rider not Updated\nError: " + e, HttpStatus.NOT_ACCEPTABLE);
+    }
+    return new ResponseEntity<>("Rider Updated", HttpStatus.OK);
   }
 }
