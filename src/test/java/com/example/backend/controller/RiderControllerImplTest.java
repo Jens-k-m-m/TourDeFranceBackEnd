@@ -4,7 +4,6 @@ package com.example.backend.controller;
 import com.example.backend.model.Rider;
 import com.example.backend.model.Team;
 import com.example.backend.repository.RiderRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -59,7 +58,7 @@ class RiderControllerImplTest {
     rider.setRiderTime(480);                    // "riderTime": 480,
     rider.setRiderPoint(5);                    // "riderPoint": 5,
     rider.setRiderMountainPoints(20);         // "riderMountainPoints": 20,
-    rider.setRiderCountry("Danmark");        // "riderCountry": "Danmark",
+    rider.setRiderCountry("Test-Danmark");        // "riderCountry": "Danmark",
                                            // "team": {
     Team team = new Team();
     team.setTeamName("Jens");
@@ -73,9 +72,33 @@ class RiderControllerImplTest {
     //Assert
     assertThat(optionalRider.isPresent()).isTrue();
     assertEquals("Test-FirstName",optionalRider.get().getRiderFirstName());
+    assertEquals("Test-LastName",optionalRider.get().getRiderLastName());
+    assertEquals("Test-Danmark",optionalRider.get().getRiderCountry());
   }
 
   @Test
   void deleteRider() {
+//Arrange
+    Rider rider = new Rider();
+    // "riderId": 2,
+    rider.setRiderFirstName("Test-FirstName");       // "riderFirstName": "Jens",
+    rider.setRiderLastName("Test-LastName");       // "riderLastName": "Madsen",
+    rider.setRiderAge(36);                       // "riderAge": 36,
+    rider.setRiderTime(480);                    // "riderTime": 480,
+    rider.setRiderPoint(5);                    // "riderPoint": 5,
+    rider.setRiderMountainPoints(20);         // "riderMountainPoints": 20,
+    rider.setRiderCountry("Test-Danmark");        // "riderCountry": "Danmark",
+    // "team": {
+    Team team = new Team();
+    team.setTeamName("Jens");
+    team.setTeamCountry("danmark");
+    // "teamId": 1
+    rider.setTeam(team);
+
+    riderControllerImpl.deleteRider(rider.getRiderId());
+
+    Optional<Rider> optionalRider = riderRepository.findById(rider.getRiderId());
+
+   assertThat(optionalRider.isPresent()).isFalse();
   }
 }
