@@ -108,5 +108,18 @@ public class Rider {
     this.team = team;
   }
 
-
+  @Override
+  public String toString() {
+    return "Rider{" +
+        "riderId=" + riderId +
+        ", riderFirstName='" + riderFirstName + '\'' +
+        ", riderLastName='" + riderLastName + '\'' +
+        ", riderAge=" + riderAge +
+        ", riderTime=" + riderTime +
+        ", riderPoint=" + riderPoint +
+        ", riderMountainPoints=" + riderMountainPoints +
+        ", riderCountry='" + riderCountry + '\'' +
+        ", team=" + team +
+        '}';
+  }
 }

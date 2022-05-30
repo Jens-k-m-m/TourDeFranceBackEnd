@@ -57,4 +57,14 @@ public class Team {
   public void setRiders(Set<Rider> riders) {
     this.riders = riders;
   }
+
+  @Override
+  public String toString() {
+    return "Team{" +
+        "teamId=" + teamId +
+        ", teamName='" + teamName + '\'' +
+        ", teamCountry='" + teamCountry + '\'' +
+        ", riders=" + riders +
+        '}';
+  }
 }
