@@ -22,6 +22,7 @@ public interface RiderController {
   @GetMapping("/show/riders")
   public List<Rider> getAllRiders();
 
+
   /**
    * Create a rider in the database. When done it returns a HTTP response 200 (OK) Mapping is
    * /create/rider
