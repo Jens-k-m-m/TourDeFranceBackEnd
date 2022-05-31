@@ -6,9 +6,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Interface class for riders  CRUD, for riders
+ */
 public interface RiderController {
 
-
+  /**
+   * Get a list of Riders from the database. The mapping is /byFirstName/riders/{searchFirstName}
+   * @param searchFirstName
+   * @return A list of rider have the same  FirstName
+   * @author Jens
+   */
   @GetMapping("/byFirstName/riders/{searchFirstName}")
   //heter fra forend
   public List<Rider> getRiderByFirstName(@PathVariable String searchFirstName);
@@ -35,7 +43,12 @@ public interface RiderController {
   public ResponseEntity<Rider> createRider(@RequestBody Rider rider);
 
 
-
+  /**
+   * Get a list of Riders from the database. The mapping is /findRiderById/rider/{searchById}
+   * @param searchById
+   * @return int rider id;
+   * @author Jens
+   */
   @GetMapping("/findRiderById/rider/{searchById}")
   public List<Rider> getRiderBySearchId(@PathVariable int searchById);
 
@@ -48,10 +61,21 @@ public interface RiderController {
    */
   @PutMapping("/update/rider/{searchById}")
   public ResponseEntity<String> updateRider(@PathVariable int searchById, @RequestBody Rider rider);
-
+  /**
+   * Delete an rider found by id, delete from database
+   *
+   * @param id - rider id
+   * @return A HTTP response
+   * @author Jens
+   */
   @DeleteMapping("/delete/rider/{id}")
   public ResponseEntity<String> deleteRider(@PathVariable int id);
-
+  /**
+   * Get a list of rider from the Team id form database.  The mapping is /team/rider/{id}
+   *
+   * @return int id form Team
+   * @author Jens
+   */
   @GetMapping("/team/rider/{id}")
   public List<Rider> getRiderFromTeam(@PathVariable int teamId);
 }
