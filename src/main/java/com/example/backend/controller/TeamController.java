@@ -22,14 +22,14 @@ public interface TeamController {
     public ResponseEntity<Rider> createRider(@RequestBody Rider rider);
 
 
-    @GetMapping("findTeamById/team/{searchById}")
+    @GetMapping("/findTeamById/team/{searchById}")
     public List<Team> getTeamBySearchId(@PathVariable int searchById);
 
 
-    @PutMapping("update/team/{searchById}")
+    @PutMapping("/update/team/{searchById}")
     public ResponseEntity<String> updateTeam(@PathVariable int searchById, @RequestBody Team team);
 
-    @DeleteMapping("delete/team/{id}")
+    @DeleteMapping("/delete/team/{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable int id);
 
 

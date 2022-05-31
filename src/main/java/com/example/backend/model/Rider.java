@@ -32,7 +32,7 @@ public class Rider {
   @Column(nullable = false)
   private String riderCountry;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = {CascadeType.MERGE})
   @JoinColumn(name = "team_id")
   private Team team;
 
@@ -114,10 +114,10 @@ public class Rider {
         "riderId=" + riderId +
         ", riderFirstName='" + riderFirstName + '\'' +
         ", riderLastName='" + riderLastName + '\'' +
-        ", riderAge=" + riderAge +
-        ", riderTime=" + riderTime +
-        ", riderPoint=" + riderPoint +
-        ", riderMountainPoints=" + riderMountainPoints +
+        ", riderAge='" + riderAge + '\'' +
+        ", riderTime='" + riderTime + '\'' +
+        ", riderPoint='" + riderPoint + '\'' +
+        ", riderMountainPoints='" + riderMountainPoints + '\'' +
         ", riderCountry='" + riderCountry + '\'' +
         ", team=" + team +
         '}';

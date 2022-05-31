@@ -33,7 +33,9 @@ public class RiderControllerImpl implements RiderController {
 
   @Override
   public ResponseEntity<Rider> createRider(Rider rider) {
-    riderRepository.save(rider);
+    System.out.println(rider + "RiderController");
+    Rider nu = riderRepository.save(rider);
+    System.out.println(nu + "Nu NU RiderController");
     return new ResponseEntity<>(rider, HttpStatus.CREATED);
   }
 

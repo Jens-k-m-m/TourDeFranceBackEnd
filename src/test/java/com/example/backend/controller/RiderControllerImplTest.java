@@ -32,19 +32,6 @@ class RiderControllerImplTest {
     riderRepository.deleteAll();
   }
 
-//  {
-//    "riderId": 2,
-//      "riderFirstName": "Jens",
-//      "riderLastName": "Madsen",
-//      "riderAge": 36,
-//      "riderTime": 480,
-//      "riderPoint": 5,
-//      "riderMountainPoints": 20,
-//      "riderCountry": "Danmark",
-//      "team": {
-//    "teamId": 1
-//  }
-//  }
 
   @Test
   void createRider() {

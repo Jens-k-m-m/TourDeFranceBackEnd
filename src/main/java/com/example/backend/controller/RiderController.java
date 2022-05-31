@@ -9,7 +9,7 @@ import java.util.List;
 public interface RiderController {
 
 
-  @GetMapping("/findRiderByFirstName/riders/{searchFirstName}")
+  @GetMapping("/byFirstName/riders/{searchFirstName}")
   //heter fra forend
   public List<Rider> getRiderByFirstName(@PathVariable String searchFirstName);
 
@@ -35,12 +35,8 @@ public interface RiderController {
   public ResponseEntity<Rider> createRider(@RequestBody Rider rider);
 
 
-  /**
-   *
-   * @param searchById
-   * @return
-   */
-  @GetMapping("findRiderById/rider/{searchById}")
+
+  @GetMapping("/findRiderById/rider/{searchById}")
   public List<Rider> getRiderBySearchId(@PathVariable int searchById);
 
   /**
@@ -50,10 +46,10 @@ public interface RiderController {
    * @return A HTTP response
    * @author Jens
    */
-  @PutMapping("update/rider/{searchById}")
+  @PutMapping("/update/rider/{searchById}")
   public ResponseEntity<String> updateRider(@PathVariable int searchById, @RequestBody Rider rider);
 
-  @DeleteMapping("delete/rider/{id}")
+  @DeleteMapping("/delete/rider/{id}")
   public ResponseEntity<String> deleteRider(@PathVariable int id);
 
   @GetMapping("/team/rider/{id}")
