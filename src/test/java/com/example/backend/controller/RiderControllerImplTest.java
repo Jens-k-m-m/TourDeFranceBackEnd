@@ -4,6 +4,7 @@ package com.example.backend.controller;
 import com.example.backend.model.Rider;
 import com.example.backend.model.Team;
 import com.example.backend.repository.RiderRepository;
+import com.example.backend.repository.TeamRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @AutoConfigureTestDatabase
 @ActiveProfiles("test")
@@ -26,6 +28,9 @@ class RiderControllerImplTest {
   private RiderRepository riderRepository;
   @Autowired
   private RiderControllerImpl riderControllerImpl;
+
+  @Autowired
+  private TeamRepository teamRepository;
 
   @BeforeTestMethod
   public void beforeTest() {
@@ -38,7 +43,7 @@ class RiderControllerImplTest {
 
     //Arrange
     Rider rider = new Rider();
-                                                      // "riderId": 2,
+    // "riderId": 2,
     rider.setRiderFirstName("Test-FirstName");       // "riderFirstName": "Jens",
     rider.setRiderLastName("Test-LastName");       // "riderLastName": "Madsen",
     rider.setRiderAge(36);                       // "riderAge": 36,
@@ -46,11 +51,11 @@ class RiderControllerImplTest {
     rider.setRiderPoint(5);                    // "riderPoint": 5,
     rider.setRiderMountainPoints(20);         // "riderMountainPoints": 20,
     rider.setRiderCountry("Test-Danmark");        // "riderCountry": "Danmark",
-                                           // "team": {
+    // "team": {
     Team team = new Team();
     team.setTeamName("Jens");
     team.setTeamCountry("danmark");
-                                     // "teamId": 1
+    teamRepository.save(team);                            // "teamId": 1
     rider.setTeam(team);
 
     //Act
@@ -58,9 +63,8 @@ class RiderControllerImplTest {
     Optional<Rider> optionalRider = riderRepository.findById(rider.getRiderId());
     //Assert
     assertThat(optionalRider.isPresent()).isTrue();
-    assertEquals("Test-FirstName",optionalRider.get().getRiderFirstName());
-    assertEquals("Test-LastName",optionalRider.get().getRiderLastName());
-    assertEquals("Test-Danmark",optionalRider.get().getRiderCountry());
+    assertEquals("Test-FirstName", optionalRider.get().getRiderFirstName());
+    assertEquals("Test-LastName", optionalRider.get().getRiderLastName());
   }
 
   @Test
@@ -86,6 +90,6 @@ class RiderControllerImplTest {
 
     Optional<Rider> optionalRider = riderRepository.findById(rider.getRiderId());
 
-   assertThat(optionalRider.isPresent()).isFalse();
+    assertThat(optionalRider.isPresent()).isFalse();
   }
 }
